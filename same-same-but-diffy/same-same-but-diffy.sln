@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Current.Web.Api", "Current.Web.Api\Current.Web.Api.csproj", "{9C1B75DF-EF7F-4CD0-900A-45C294DDC0FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast.Web.Api", "WeatherForecast.Web.Api\WeatherForecast.Web.Api.csproj", "{9C1B75DF-EF7F-4CD0-900A-45C294DDC0FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
