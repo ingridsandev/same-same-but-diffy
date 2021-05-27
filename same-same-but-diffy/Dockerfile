@@ -4,16 +4,16 @@ WORKDIR /source
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY Current.Web.Api/*.csproj ./Current.Web.Api/
+COPY WeatherForecast.Web.Api/*.csproj ./WeatherForecast.Web.Api/
 RUN dotnet restore
 
 # copy everything else and build app
-COPY Current.Web.Api/. ./Current.Web.Api/
-WORKDIR /source/Current.Web.Api
+COPY WeatherForecast.Web.Api/. ./WeatherForecast.Web.Api/
+WORKDIR /source/WeatherForecast.Web.Api
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "Current.Web.Api.dll"]
+ENTRYPOINT ["dotnet", "WeatherForecast.Web.Api.dll"]

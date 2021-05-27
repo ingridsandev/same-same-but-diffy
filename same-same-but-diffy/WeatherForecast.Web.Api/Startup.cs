@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace Current.Web.Api
+namespace WeatherForecast.Web.Api
 {
     public class Startup
     {

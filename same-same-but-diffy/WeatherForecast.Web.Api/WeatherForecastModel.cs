@@ -1,8 +1,8 @@
 using System;
 
-namespace Current.Web.Api
+namespace WeatherForecast.Web.Api
 {
-    public class WeatherForecast
+    public class WeatherForecastModel
     {
         public DateTime Date { get; set; }
 

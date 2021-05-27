@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Current.Web.Api
+namespace WeatherForecast.Web.Api
 {
     public class Program
     {
