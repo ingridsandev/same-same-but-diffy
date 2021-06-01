@@ -15,7 +15,7 @@ services:
     networks:
       - hostnet
     ports:
-        - "9991:80"
+      - "9991:80"
 
   candidate:
     container_name: candidate
