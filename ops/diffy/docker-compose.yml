@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  primary:
+    container_name: primary
+    image: same-same-but-diffy-image
+    networks:
+      - hostnet
+    ports:
+      - "9990:80"
+
+  secondary:
+    container_name: secondary
+    image: same-same-but-diffy-image
+    networks:
+      - hostnet
+    ports:
+        - "9991:80"
+
+  candidate:
+    container_name: candidate
+    image: same-same-but-diffy-image
+    networks:
+      - "hostnet"
+    ports:
+      - "9992:80"
+
+  diffy:
+    container_name: diffy
+    image: diffy/diffy
+    depends_on:
+      - candidate
+      - secondary
+      - primary
+    networks:
+      - "hostnet"
+    dns:
+      - "172.10.15.207"
+    ports:
+      - "5008:8880"
+      - "5009:8881"
+      - "5010:8888"
+    command: >
+      -master.primary='primary:80'
+      -master.secondary='secondary:80'
+      -candidate='candidate:80'
+      -responseMode='primary'
+      -service.protocol='http'
+      -serviceName=Hackathon-2021
+      -maxHeaderSize='32.kilobytes'
+      -maxResponseSize='5.megabytes'
+      -proxy.port=:8880
+      -admin.port=:8881
+      -http.port=:8888
+      -rootUrl='localhost:8888'      
+      -summary.email="info@diffy.ai"
+      -summary.delay="5"
+
+networks:
+  hostnet:
