@@ -50,7 +50,6 @@ services:
   prod:
     container_name: prod
     image: same-same-but-diffy-image
-    #image: nginx:1.21-alpine
     ports:
       - "8080:80"
     networks:
@@ -59,7 +58,6 @@ services:
   dev:
     container_name: dev
     image: same-same-but-diffy-image
-    #image: nginx:1.21-alpine
     ports:
       - "8181:80"
     networks:
@@ -67,10 +65,7 @@ services:
   
   goreplay:
     container_name: gor
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: goreplay
+    image: buger/goreplay
     network_mode: "host"
     command:
       - '--input-raw=:8080'
