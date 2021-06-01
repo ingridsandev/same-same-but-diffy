@@ -1,0 +1,77 @@
+
+######
+
+# version: "3"
+
+# services:
+#   dev:
+#     container_name: dev
+#     image: same-same-but-diffy-image
+#     networks:
+#       - hostnet
+#     ports:
+#         - "8080:80"
+
+#   prod:
+#     container_name: prod
+#     image: same-same-but-diffy-image
+#     networks:
+#       - hostnet
+#     ports:
+#       - "8181:80"
+
+#   gor:
+#     container_name: goreplay
+#     build:
+#       context: ./
+#       dockerfile: Dockerfile
+#     depends_on:
+#       - prod
+#       - dev
+#     networks:
+#       - "hostnet"
+#     ports:
+#       - "9992:80"
+#     command:
+#       - '--input-raw=:8080'
+#       - '--output-http=http://127.0.0.1:8181'
+
+# networks:
+#   hostnet:
+
+######
+
+version: "3"
+
+networks:
+  public: {}
+  
+services:
+  prod:
+    container_name: prod
+    image: same-same-but-diffy-image
+    #image: nginx:1.21-alpine
+    ports:
+      - "8080:80"
+    networks:
+      - public
+  
+  dev:
+    container_name: dev
+    image: same-same-but-diffy-image
+    #image: nginx:1.21-alpine
+    ports:
+      - "8181:80"
+    networks:
+      - public
+  
+  goreplay:
+    container_name: gor
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: goreplay
+    network_mode: "host"
+    command:
+      - '--input-raw=:8080'
+      - '--output-http=http://127.0.0.1:8181'
