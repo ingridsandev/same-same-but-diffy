@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using WeatherForecast.Web.Api;
 
 namespace Current.Web.Api.Controllers
@@ -26,14 +27,17 @@ namespace Current.Web.Api.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecastModel> Get()
         {
-            Console.WriteLine("Hello from Weather Forecast");
+            Console.WriteLine(">> HELLO FROM WEATHER FORECAST CONTROLLER!");
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
+            var response = Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
                 {
                     Date = DateTime.Now.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55)
+                    TemperatureC = rng.Next(-20, 55),
+                    Test = "YES"
                 })
                 .ToArray();
+
+            return response;
         }
     }
 }
