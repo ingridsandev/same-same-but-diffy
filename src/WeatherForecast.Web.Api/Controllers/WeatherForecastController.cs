@@ -27,6 +27,7 @@ namespace Current.Web.Api.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecastModel> Get()
         {
+            Console.WriteLine(">> HELLO FROM WEATHER FORECAST CONTROLLER!");
             var rng = new Random();
             var response = Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
                 {
@@ -35,8 +36,6 @@ namespace Current.Web.Api.Controllers
                     Test = "YES"
                 })
                 .ToArray();
-
-            Console.WriteLine(JsonConvert.SerializeObject(response));
 
             return response;
         }
