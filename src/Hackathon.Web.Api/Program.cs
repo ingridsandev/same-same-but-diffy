@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace WeatherForecast.Web.Api
+namespace Hackathon.Web.Api
 {
     public class Program
     {
