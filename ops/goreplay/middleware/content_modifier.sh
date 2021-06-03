@@ -21,7 +21,6 @@ while read line; do
         printLog "Response of the request replayed in Development"
         ;;
     *)
-        #log "Unknown request type $header"
     esac
 
     printLog "<<----------------------------------->>"

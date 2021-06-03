@@ -1,0 +1,38 @@
+
+version: "3"
+
+networks:
+  public: {}
+  
+services:
+  prod:
+    container_name: prod
+    image: same-same-but-diffy:prod
+    ports:
+      - "8080:80"
+    networks:
+      - public
+  
+  goreplay:
+    container_name: gor
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: goreplay
+    network_mode: "host"
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SECURITY_TOKEN
+      - AWS_SESSION_EXPIRATION
+      - AWS_SESSION_TOKEN
+      - AWS_REGION
+    command:
+      - '--input-raw=:8080'
+      - '--input-file s3://goreplay-poc-eu-west-1/'
+      #- '--output-http=http://127.0.0.1:8181'
+      #- '--input-raw-track-response'
+      #- '--output-http-track-response'
+      #- '--middleware=sh /opt/content_modifier.sh'
+      #- '--debug'
+      #- '--verbose'
