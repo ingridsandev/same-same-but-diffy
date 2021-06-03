@@ -38,6 +38,8 @@ namespace Hackathon.Web.Api.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            Console.WriteLine(">> HELLO FROM WEATHER FORECAST CONTROLLER!");
+        
             return Summaries;
         }
     }
