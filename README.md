@@ -30,4 +30,4 @@ The following script will build development API and Goreplay images and spin up 
 
 Once both containers started, you will see immediately that dev container is being hit by the file replay from S3.
 
-![dev docker-compose up and running](../same-same-but-diffy/doc-images/containers-up-and-running-dev.png)
+![dev docker-compose up and running](https://github.com/ingridsandev/same-same-but-diffy/blob/main/doc-images/containers-up-and-running-dev.png)
