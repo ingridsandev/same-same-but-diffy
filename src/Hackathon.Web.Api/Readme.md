@@ -16,7 +16,7 @@ This is where you will see your traffic and can see the differences in the respo
 In your terminal, run `sh ops/diffy/send-traffic.sh`
 
 This will simulate some requests to the APIs. these request go through a proxy that diffy sets up. the proxy then sends the requests to each API and detects the differences in the response.
-Some of the requests here are meant to fail.
+Some of the requests here are meant to show differences on the diffy server.
 
 ## The API
 The API is very simple. All it does is
