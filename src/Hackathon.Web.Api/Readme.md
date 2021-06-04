@@ -25,4 +25,4 @@ The API is very simple. All it does is
 - If it is, it tries to format the `DateOfBirth` prop into a valid date time format.
 
 ## External Resources
-[Diffy Repo](https://github.com/twitter-archive/diffy)
+[Diffy Repo](https://github.com/opendiffy/diffy)
