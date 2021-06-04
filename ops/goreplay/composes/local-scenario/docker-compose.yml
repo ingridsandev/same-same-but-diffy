@@ -33,6 +33,6 @@ services:
       - '--output-http=http://127.0.0.1:8181'
       - '--input-raw-track-response'
       - '--output-http-track-response'
-      - '--middleware=sh /opt/content_modifier.sh'
+      - '--middleware=sh /opt/echo.sh'
       #- '--debug'
       #- '--verbose'

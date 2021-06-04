@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+  public: {}
+  
+services:
+  dev:
+    container_name: dev
+    image: same-same-but-diffy:dev
+    ports:
+      - "8181:80"
+    networks:
+      - public
+  
+  goreplay:
+    container_name: gor_dev
+    depends_on:
+      - dev
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: goreplay
+    network_mode: "host"
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SECURITY_TOKEN
+      - AWS_SESSION_EXPIRATION
+      - AWS_SESSION_TOKEN
+    command:
+      - '--output-http=http://127.0.0.1:8181'
+      - '--input-file=/opt/prod_requests.gor'
+      # - '--debug'
