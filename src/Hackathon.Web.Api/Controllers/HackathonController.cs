@@ -22,17 +22,9 @@ namespace Hackathon.Web.Api.Controllers
         }
 
         [HttpPost]
-        public Customer Post(Customer customer)
+        public string Post(Person person)
         {
-            var rnd = new Random();
-            var num  = rnd.Next(1, 5);
-            var test = num % 2 == 0;
-            
-            return new Customer
-            {
-                FirstName = customer.FirstName,
-                IsAlive = test
-            };
+            return person.ToString();
         }
         
         [HttpGet]
@@ -44,9 +36,30 @@ namespace Hackathon.Web.Api.Controllers
         }
     }
 
-    public class Customer
+    public class Person
     {
         public string FirstName { get; set; }
-        public bool IsAlive { get; set; }
+        public string LastName { get; set; }
+        public string DateOfBirth { get; set; }
+
+        public override string ToString()
+        {
+            if (Environment.GetEnvironmentVariable("IS_CANDIDATE_DEPLOYMENT") != null && 
+                Boolean.Parse(Environment.GetEnvironmentVariable("IS_CANDIDATE_DEPLOYMENT")))
+            {
+                string formattedDateOfBirth;
+                try
+                {
+                    formattedDateOfBirth = DateTime.Parse(DateOfBirth).ToString("d");
+                }
+                catch (Exception e)
+                {
+                    formattedDateOfBirth = "INVALID DATE OF BIRTH";
+                }
+                return $"{FirstName} {LastName} {formattedDateOfBirth}";
+            }
+            
+            return $"{FirstName} {LastName} {DateOfBirth}";
+        }
     }
 }

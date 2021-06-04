@@ -7,7 +7,7 @@ services:
     networks:
       - hostnet
     ports:
-      - "9990:80"
+      - "9990:80"    
 
   secondary:
     container_name: secondary
@@ -24,6 +24,8 @@ services:
       - "hostnet"
     ports:
       - "9992:80"
+    environment:
+      - IS_CANDIDATE_DEPLOYMENT=true
 
   diffy:
     container_name: diffy
