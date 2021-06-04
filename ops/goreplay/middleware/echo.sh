@@ -25,6 +25,5 @@ while read line; do
 
     printLog "<<----------------------------------->>"
     printLog "Decoded request: $decoded"
-    
     echo $line
 done;

@@ -1,4 +1,3 @@
-
 version: "3"
 
 networks:
@@ -14,7 +13,7 @@ services:
       - public
   
   goreplay:
-    container_name: gor
+    container_name: gor_prod
     build:
       context: ./
       dockerfile: Dockerfile
@@ -26,13 +25,10 @@ services:
       - AWS_SECURITY_TOKEN
       - AWS_SESSION_EXPIRATION
       - AWS_SESSION_TOKEN
-      - AWS_REGION
     command:
       - '--input-raw=:8080'
-      - '--input-file s3://goreplay-poc-eu-west-1/'
-      #- '--output-http=http://127.0.0.1:8181'
-      #- '--input-raw-track-response'
-      #- '--output-http-track-response'
-      #- '--middleware=sh /opt/content_modifier.sh'
-      #- '--debug'
-      #- '--verbose'
+      - '--output-file=prod_requests.gor'
+      - '--input-raw-track-response'
+      - '--output-http-track-response'
+      - '--output-file-append'
+      - '--middleware=sh /opt/forwarder.sh'
